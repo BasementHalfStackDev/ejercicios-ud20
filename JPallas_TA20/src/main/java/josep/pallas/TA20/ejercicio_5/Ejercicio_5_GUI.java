@@ -31,14 +31,16 @@ class Ejercicio_5_GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
+		// Button to clear console
 		btnClear = new JButton("Clear");
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnClear.addActionListener(buttonAction);
+		btnClear.addActionListener(buttonAction); // Action listener
 		contentPane.add(btnClear, BorderLayout.NORTH);
 
+		// Text Area to log all mouse events
 		textArea_log = new JTextArea();
 		textArea_log.setEditable(false);
-		textArea_log.addMouseListener(mouseListen);
+		textArea_log.addMouseListener(mouseListen); // Mouse listener
 		contentPane.add(textArea_log, BorderLayout.CENTER);
 		getContentPane().add(new JScrollPane(textArea_log)); // Scroll bar to text area
 		setVisible(true);
@@ -46,12 +48,14 @@ class Ejercicio_5_GUI extends JFrame {
 		setVisible(true);
 	}
 
+	// Button action listener to clear the console
 	ActionListener buttonAction = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			textArea_log.setText("");
 		}
 	};
 
+	// Mouse listener to log all of its actions on the console
 	MouseListener mouseListen = new MouseListener() {
 		public void mouseClicked(MouseEvent e) {
 			textArea_log.append("Mouse clicked\n");
