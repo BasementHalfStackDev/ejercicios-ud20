@@ -24,7 +24,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ejercicio_1_GUI extends JFrame {
+class Ejercicio_1_GUI extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lbl_text;
