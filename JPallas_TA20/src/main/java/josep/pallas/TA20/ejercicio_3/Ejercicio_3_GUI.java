@@ -9,7 +9,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Ejercicio_3_GUI extends JFrame {
+class Ejercicio_3_GUI extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lbl_btn1Counter;
