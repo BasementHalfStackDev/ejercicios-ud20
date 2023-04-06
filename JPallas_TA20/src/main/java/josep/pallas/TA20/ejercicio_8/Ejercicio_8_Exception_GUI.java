@@ -39,7 +39,7 @@ public class Ejercicio_8_Exception_GUI extends JFrame {
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(lblTitle);
 		
-		// Two labels for each line
+		// One label for each error message line
 		JLabel lblNewLabel_1 = new JLabel("Please, make sure that you inserted a numeric value without letters or characters.");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(15, 33, 477, 14);
