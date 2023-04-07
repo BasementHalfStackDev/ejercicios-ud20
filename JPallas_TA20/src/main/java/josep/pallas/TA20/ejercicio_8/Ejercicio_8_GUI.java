@@ -1,9 +1,12 @@
 package josep.pallas.TA20.ejercicio_8;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,6 +57,7 @@ class Ejercicio_8_GUI extends JFrame {
 		textFieldAmmount.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		textFieldAmmount.setBounds(130, 45, 86, 20);
 		contentPane.add(textFieldAmmount);
+		textFieldAmmount.addKeyListener(navigation); // Added navigation
 		textFieldAmmount.setColumns(10);
 
 		textFieldResult = new JTextField();
@@ -61,6 +65,7 @@ class Ejercicio_8_GUI extends JFrame {
 		textFieldResult.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		textFieldResult.setColumns(10);
 		textFieldResult.setBounds(298, 44, 86, 20);
+		textFieldResult.setFocusable(false); // Set to false to the user cannot navigate to it
 		contentPane.add(textFieldResult);
 
 		// Buttons to calculate, switch conversion and clear
@@ -68,18 +73,21 @@ class Ejercicio_8_GUI extends JFrame {
 		btnCalc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCalc.setBounds(20, 75, 128, 31);
 		btnCalc.addActionListener(btns);
+		btnCalc.addKeyListener(navigation); // Added navigation
 		contentPane.add(btnCalc);
 
 		btnSwitch = new JButton("Switch");
 		btnSwitch.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSwitch.setBounds(179, 75, 98, 31);
 		btnSwitch.addActionListener(btns);
+		btnSwitch.addKeyListener(navigation); // Added navigation
 		contentPane.add(btnSwitch);
 
 		btnDel = new JButton("Clear");
 		btnDel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnDel.setBounds(308, 75, 98, 31);
 		btnDel.addActionListener(btns);
+		btnDel.addKeyListener(navigation); // Added navigation
 		contentPane.add(btnDel);
 
 		setVisible(true);
@@ -115,6 +123,27 @@ class Ejercicio_8_GUI extends JFrame {
 				}
 			} catch (NumberFormatException ex) { // If number is invalid, throw exception
 				Ejercicio_8_Exception_GUI exception = new Ejercicio_8_Exception_GUI();
+			}
+		}
+	};
+
+	// Navigation KeyAdapter
+	KeyAdapter navigation = new KeyAdapter() {
+		public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) { // Left arrow key to go back
+				Component comp = (Component) e.getSource();
+				comp.transferFocusBackward();
+			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) { // Right arrow key to go forward
+				Component comp = (Component) e.getSource();
+				comp.transferFocus();
+			} else if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Enter key to press button
+				Component comp = (Component) e.getSource();
+				if (comp instanceof JButton) {
+					JButton button = (JButton) comp;
+					button.doClick();
+				}
+			} else if (e.getKeyCode() == KeyEvent.VK_DELETE) { // Suprimir/Del to clear
+				btnDel.doClick();
 			}
 		}
 	};
