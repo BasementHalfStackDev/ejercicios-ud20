@@ -29,57 +29,58 @@ class Ejercicio_9_GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(4, 4));
 
-		JToggleButton btn0_0 = new JToggleButton("Amogus");
-		btn0_0.setIcon(new ImageIcon(Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/adad.png")));
+		JToggleButton btn0_0 = new JToggleButton();
+		btn0_0.setIcon(new ImageIcon(Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/QuestionMark.png")));
 		btn0_0.setSelectedIcon(new ImageIcon(Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/black.png")));
 		contentPane.add(btn0_0);
 
-		JToggleButton btn0_1 = new JToggleButton("Bus");
+		JToggleButton btn0_1 = new JToggleButton();
+		btn0_1.setIcon(new ImageIcon(Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/QuestionMark.png")));
 		contentPane.add(btn0_1);
 
-		JToggleButton btn0_2 = new JToggleButton("Isaac");
+		JToggleButton btn0_2 = new JToggleButton();
 		contentPane.add(btn0_2);
 
-		JToggleButton btn0_3 = new JToggleButton("Isaac");
+		JToggleButton btn0_3 = new JToggleButton();
 		contentPane.add(btn0_3);
 
-		JToggleButton btn1_0 = new JToggleButton("Cat");
+		JToggleButton btn1_0 = new JToggleButton();
 		contentPane.add(btn1_0);
 
-		JToggleButton btn1_1 = new JToggleButton("Java");
+		JToggleButton btn1_1 = new JToggleButton();
 		contentPane.add(btn1_1);
 
-		JToggleButton btn1_2 = new JToggleButton("Doggo");
+		JToggleButton btn1_2 = new JToggleButton();
 		contentPane.add(btn1_2);
 
-		JToggleButton btn1_3 = new JToggleButton("Amogus");
+		JToggleButton btn1_3 = new JToggleButton();
 		contentPane.add(btn1_3);
 
-		JToggleButton btn2_0 = new JToggleButton("Meme");
+		JToggleButton btn2_0 = new JToggleButton();
 		contentPane.add(btn2_0);
 
-		JToggleButton btn2_1 = new JToggleButton("EasterEgg");
+		JToggleButton btn2_1 = new JToggleButton();
 		contentPane.add(btn2_1);
 
-		JToggleButton btn2_2 = new JToggleButton("EasterEgg");
+		JToggleButton btn2_2 = new JToggleButton();
 		contentPane.add(btn2_2);
 
-		JToggleButton btn2_3 = new JToggleButton("Java");
+		JToggleButton btn2_3 = new JToggleButton();
 		contentPane.add(btn2_3);
 
-		JToggleButton btn3_0 = new JToggleButton("Bus");
+		JToggleButton btn3_0 = new JToggleButton();
 		contentPane.add(btn3_0);
 
-		JToggleButton btn3_1 = new JToggleButton("Meme");
+		JToggleButton btn3_1 = new JToggleButton();
 		contentPane.add(btn3_1);
 
-		JToggleButton btn3_2 = new JToggleButton("Cat");
+		JToggleButton btn3_2 = new JToggleButton();
 		contentPane.add(btn3_2);
 
-		JToggleButton btn3_3 = new JToggleButton("Doggo");
+		JToggleButton btn3_3 = new JToggleButton();
 		contentPane.add(btn3_3);
 		
-		addActionListenerToButtons();
+		initialiseButtons();
 
 		setVisible(true);
 	}
@@ -142,10 +143,11 @@ class Ejercicio_9_GUI extends JFrame {
 		}
 	}
 	
-	private void addActionListenerToButtons(){
+	private void initialiseButtons(){
 		for (Component c : contentPane.getComponents()) {
 			if (c instanceof JToggleButton) {
 				JToggleButton button = (JToggleButton) c;
+				button.setIcon(new ImageIcon(Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/QuestionMark.png")));
 				button.addActionListener(btns);
 			}
 		}
