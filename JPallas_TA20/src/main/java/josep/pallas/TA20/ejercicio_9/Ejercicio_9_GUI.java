@@ -1,22 +1,27 @@
 package josep.pallas.TA20.ejercicio_9;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 
 class Ejercicio_9_GUI extends JFrame {
 
 	private JPanel contentPane;
 	private int selectedCounter;
+	private int pairs = 0;
+	private int intentos = 0;
+	private final int MAX_PAIRS = 8;
+	
+	// Button array to check pairs
 	private JToggleButton[] selectedButtons = new JToggleButton[2];
+	// Initialise images
 	private ImageIcon isaac = new ImageIcon(
 			Ejercicio_9_GUI.class.getResource("/josep/pallas/TA20/ejercicio_9/assets/isaac.png"));
 	private ImageIcon amogus = new ImageIcon(
@@ -45,6 +50,7 @@ class Ejercicio_9_GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(4, 4));
 
+		// Add selected image to each button
 		JToggleButton btn0_0 = new JToggleButton();
 		btn0_0.setSelectedIcon(cat);
 		contentPane.add(btn0_0);
@@ -114,21 +120,24 @@ class Ejercicio_9_GUI extends JFrame {
 		setVisible(true);
 	}
 
+	// Action listener for buttons
 	ActionListener btns = new ActionListener() {
-
 		public void actionPerformed(ActionEvent e) {
+			// Selects button on click
 			JToggleButton btn1 = (JToggleButton) e.getSource();
 			btn1.setSelected(true);
 
+			// Check if there's a pair selected
 			if (checkPairs()) {
-				getPairs();
-				calculate();
+				getPairs(); // Gets the two paired buttons
+				calculate(); // Calculates the result
 			}
 
 		}
 
 	};
 
+	// Function that checks if there are two buttons selected
 	private boolean checkPairs() {
 		selectedCounter = 0;
 		for (Component c : contentPane.getComponents()) {
@@ -148,6 +157,7 @@ class Ejercicio_9_GUI extends JFrame {
 		}
 	}
 
+	// Function that gets the two selected buttons into an array
 	private void getPairs() {
 		int i = 0;
 		for (Component c : contentPane.getComponents()) {
@@ -161,12 +171,20 @@ class Ejercicio_9_GUI extends JFrame {
 		}
 	}
 
+	// Checks if the two buttons are equal and disables them if yes
+	// Resets them if no
 	private void calculate() {
 		if (selectedButtons[0].getSelectedIcon().equals(selectedButtons[1].getSelectedIcon())) {
 			selectedButtons[0].setEnabled(false);
 			selectedButtons[1].setEnabled(false);
+			pairs = pairs +1; // Count pairs
+			
+			// Check win condition and display ammount of tries
+			if (pairs == MAX_PAIRS) {
+				JOptionPane.showMessageDialog(null, "You win! It took you "+intentos+" tries!");
+			}
 		} else {
-			// Sleep for 1 second to show selected pairs
+			// Sleep for 1 second to show selected pairs if not equal
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -174,9 +192,11 @@ class Ejercicio_9_GUI extends JFrame {
 			}
 			selectedButtons[0].setSelected(false);
 			selectedButtons[1].setSelected(false);
+			intentos = intentos+1; // Count intento
 		}
 	}
 
+	// Function that adds the default image and listener to all buttons
 	private void initialiseButtons() {
 		for (Component c : contentPane.getComponents()) {
 			if (c instanceof JToggleButton) {
